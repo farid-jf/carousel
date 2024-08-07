@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
      <head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Carousel test</title>
           <link rel="stylesheet" href="assets/css/style.css" />
+          <script src="assets/js/script.js" defer></script>
      </head>
      <body>
-          <div class="slider">
-               <div class="slider-inner">
-                    <div
-                         class="slide active"
-                         style="background-color: red; width: 100%; height: 40rem"
-                    ></div>
-                    <div
-                         class="slide"
-                         style="background-color: blue; width: 100%; height: 40rem"
-                    ></div>
+          <!-- carousel -->
+          <div class="slider" id="slider">
+               <div class="slider-inner" id="sliderInner">
+                    <div class="slide" id="slide">
+                         <img src="assets/img/img_mountains_wide.jpg" alt="" />
+                    </div>
+
+                    <div class="slide" id="slide">
+                         <img src="assets/img/img_nature_wide.jpg" alt="" />
+                    </div>
                </div>
-               <div class="controls">
-                    <button class="prev">&#8249;</button>
-                    <button class="next">&#8250;</button>
+
+               <!-- controls -->
+               <div class="controls" id="controls">
+                    <button class="prev" id="prev">&#8249;</button>
+                    <button class="next" id="next">&#8250;</button>
                </div>
-               <div class="indicators">
+
+               <!-- indicators -->
+               <div class="indicators" id="indicators">
                     <span></span>
                     <span></span>
                </div>
           </div>
-
-          <script src="assets/js/script.js"></script>
      </body>
 </html>
