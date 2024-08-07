@@ -1,3 +1,4 @@
+// carousel
 const slider = document.getElementById('slider');
 const sliderInner = document.getElementById('sliderInner');
 const slides = sliderInner.querySelectorAll('#slide');
@@ -7,7 +8,7 @@ const indicators = document.querySelectorAll('#indicators span');
 
 let slideIndex = 0;
 let slideWidth = slides[0].clientWidth;
-let autoplayInterval; // Variable to store the interval ID
+let autoplayInterval;
 
 const showSlide = (n) => {
   slideIndex = (n + slides.length) % slides.length;
@@ -21,7 +22,7 @@ const showSlide = (n) => {
 const startAutoplay = () => {
   autoplayInterval = setInterval(() => {
     showSlide(slideIndex + 1);
-  }, 10000); // Change slides every 10 seconds (10000 milliseconds)
+  }, 5000);
 };
 
 const stopAutoplay = () => {
@@ -34,20 +35,44 @@ showSlide(slideIndex);
 // Button event listeners
 prevBtn.addEventListener('click', () => {
   showSlide(slideIndex - 1);
-  stopAutoplay(); // Stop autoplay when user interacts
+  stopAutoplay();
+  startAutoplay();
 });
 nextBtn.addEventListener('click', () => {
   showSlide(slideIndex + 1);
-  stopAutoplay(); // Stop autoplay when user interacts
+  stopAutoplay();
+  startAutoplay();
 });
 
 // Indicator event listeners
 indicators.forEach((indicator, index) => {
   indicator.addEventListener('click', () => {
     showSlide(index);
-    stopAutoplay(); // Stop autoplay when user interacts
+    stopAutoplay();
+    startAutoplay();
   });
 });
 
 // Start autoplay on page load (optional)
-startAutoplay(); // Uncomment this line to enable autoplay on page load
+// startAutoplay();
+
+// Swipe functionality
+let startX, endX;
+
+slider.addEventListener('touchstart', (event) => {
+  startX = event.touches[0].clientX;
+});
+
+slider.addEventListener('touchend', (event) => {
+  endX = event.changedTouches[0].clientX;
+
+  if (endX < startX) {
+    showSlide(slideIndex + 1); // Swipe right
+  } else if (endX > startX) {
+    showSlide(slideIndex - 1); // Swipe left
+  }
+  stopAutoplay();
+  startAutoplay();
+});
+
+startAutoplay();
